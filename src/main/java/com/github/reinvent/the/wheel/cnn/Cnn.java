@@ -66,14 +66,18 @@ public class Cnn implements Serializable {
     }
 
     public boolean test(DataSet.Record record) {
+        return predict(record) == record.getLabel();
+    }
+
+    public Integer predict(DataSet.Record record) {
         forward(record);
         if (layers.size() > 0) {
             Layer lastLayer = layers.get(layers.size() - 1);
             if (lastLayer instanceof OutputLayer) {
-                return record.getLabel() == ((OutputLayer) lastLayer).getLabel(record.getIndex());
+                return ((OutputLayer) lastLayer).getLabel(record.getIndex());
             }
         }
-        return false;
+        return null;
     }
 
     private void updateParameters() {
