@@ -146,10 +146,10 @@ public class ConvolutionalLayer implements LayerWithKernel {
                 deltaKernel = MathUtil.trans(deltaKernel, v -> v / batchSize);
                 // 更新卷积核
                 double[][] kernel = kernels[i][j];
-                deltaKernel = MathUtil.trans(MathUtil.trans(kernel, v -> v * (1 - Cnn.LAMBDA * Cnn.ALPHA))
+                kernel = MathUtil.trans(MathUtil.trans(kernel, v -> v * (1 - Cnn.LAMBDA * Cnn.ALPHA))
                         , MathUtil.trans(deltaKernel, v -> v * Cnn.ALPHA),
                         v1 -> v2 -> v1 + v2);
-                kernels[i][j] = deltaKernel;
+                kernels[i][j] = kernel;
             }
         }
     }
