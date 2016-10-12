@@ -18,6 +18,9 @@ public class Cnn implements Serializable {
     public Cnn(int batchSize, LinkedList<Layer> layers) {
         this.batchSize = batchSize;
         this.layers = layers;
+        layers.forEach(layer -> {
+            logger.info(layer.getClass().getSimpleName() + ":outs:" + layer.getOutCount());
+        });
     }
 
     public static Cnn readModel(String fileName) throws IOException, ClassNotFoundException {

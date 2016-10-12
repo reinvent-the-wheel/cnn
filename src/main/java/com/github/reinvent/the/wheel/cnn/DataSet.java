@@ -67,7 +67,7 @@ public class DataSet {
      * @param consumer
      */
     void testRecordForEach(Consumer<Record> consumer) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader("dataSet/data.ds"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             long lineNumber = 0L;
             for (String line = reader.readLine(); line != null; line = reader.readLine()) {
                 if (testSelected.contains(lineNumber)) {
